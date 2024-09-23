@@ -207,8 +207,10 @@ public class TimeController : MonoBehaviour
                 dateTime = UnixTimeMillisecondsToDateTime(unixTimeMilliseconds);
                 dateTime = dateTime.AddHours(3);// so that there is a premium according to MSK
                                                 //Чтоб было как по МСК
+#if !UNITY_EDITOR
                 dateTime = dateTime.AddSeconds(1);// невелируем задуржку браузера, она может быть и больше, но секунда норм 
                                                   // we mitigate the browser delay, it can be more, but a second is normal
+#endif
                 Debug.Log($"Время по Unix timestamp: {dateTime}");
                 FakeLoad.SetActive(false);
                 MoscowText.SetActive(true);

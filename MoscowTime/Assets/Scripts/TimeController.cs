@@ -205,7 +205,10 @@ public class TimeController : MonoBehaviour
                 Debug.Log($"JSON Response: {jsonResponse}");
                 long unixTimeMilliseconds = ExtractTimeFromJson(jsonResponse);
                 dateTime = UnixTimeMillisecondsToDateTime(unixTimeMilliseconds);
-                dateTime = dateTime.AddHours(3);
+                dateTime = dateTime.AddHours(3);// so that there is a premium according to MSK
+                                                //Чтоб было как по МСК
+                dateTime = dateTime.AddSeconds(1);// невелируем задуржку браузера, она может быть и больше, но секунда норм 
+                                                  // we mitigate the browser delay, it can be more, but a second is normal
                 Debug.Log($"Время по Unix timestamp: {dateTime}");
                 FakeLoad.SetActive(false);
                 MoscowText.SetActive(true);
